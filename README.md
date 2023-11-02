@@ -43,12 +43,12 @@ In Harness CI,
     name: helm to docker
     identifier: helm_to_docker
     spec:
-      connectorRef: akshitnodeserverconnector
+      connectorRef: docker-registry-connector
       image: harnesscommunity/drone-helm-chart-docker-registry
       settings:
         chart_name: mywebapp
         docker_username: <+variable.docker_username>
-        docker_password: <+secrets.getValue("helmpluginpat")>
+        docker_password: <+secrets.getValue("pat-token")>
         chart_path: test
         chart_version: 1.0.0
         docker_registry: registry.hub.docker.com
