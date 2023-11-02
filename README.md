@@ -18,7 +18,7 @@ Build the Docker image with the following commands:
 docker buildx build -t DOCKER_ORG/drone-helm-chart-docker-registry --platform linux/amd64 .
 ```
 
-Please build the image for Linux AMD64 platform
+Build the image for the Linux AMD64 platform
 
 ## Usage
 
