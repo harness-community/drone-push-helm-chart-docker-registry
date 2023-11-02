@@ -7,6 +7,12 @@ Drone plugin to package and push a helm chart to a docker registry.
 Run the script directly using the command:
 
 ```python
+PLUGIN_CHART_NAME=CHART_NAME \
+PLUGIN_CHART_VERSION=CHART_VERSION \
+PLUGIN_DOCKER_REGISTRY=DOCKER_REGISTRY \
+PLUGIN_CHART_PATH=CHART_PATH \
+PLUGIN_DOCKER_USERNAME=DOCKER_USERNAME \
+PLUGIN_DOCKER_PASSWORD=DOCKER_PASSWORD \
 python3 main.py
 ```
 
