@@ -1,5 +1,5 @@
-# z Plugin Name: Push OCI Chart to Registry
-# Description: Pushes an OCI Chart to a Docker Registry
+# Plugin Name: Push OCI Chart to Registry
+# Description: Pushes an Helm Chart to a Docker Registry
 
 import os
 import subprocess
