@@ -15,7 +15,7 @@ python3 main.py
 Build the Docker image with the following commands:
 
 ```
-docker buildx build -t DOCKER_ORG/drone-helm-chart-docker-registry --platform linux/amd64 .
+docker buildx build -t DOCKER_ORG/drone-helm-docker-registry --platform linux/amd64 .
 ```
 
 Please build the image for Linux AMD64 platform
@@ -32,7 +32,7 @@ docker run --rm \
   -e PLUGIN_DOCKER_PASSWORD=${DOCKER_PAT} \
   -v $(pwd):$(pwd) \
   -w $(pwd) \
-
+harnesscommunity/drone-helm-docker-registry
 ```
 
 In Harness CI,
@@ -44,7 +44,7 @@ In Harness CI,
     identifier: helm_to_docker
     spec:
       connectorRef: akshitnodeserverconnector
-      image: harnesscommunity/drone-helm-chart-docker-registry
+      image: harnesscommunity/drone-helm-docker-registry
       settings:
         chart_name: mywebapp
         docker_username: <+variable.docker_username>
