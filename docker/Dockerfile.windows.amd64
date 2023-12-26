@@ -8,13 +8,20 @@ WORKDIR C:\\app
 
 ENV HELM_EXPERIMENTAL_OCI=1
 
+# Install chocolatey
+RUN powershell -Command \
+    Set-ExecutionPolicy Bypass -Scope Process -Force; \
+    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; \
+    iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 
-RUN curl.exe -LO "https://get.helm.sh/helm-v3.7.0-windows-amd64.zip" && \
-    Expand-Archive -Path helm-v3.7.0-windows-amd64.zip -DestinationPath . && \
-    Move-Item -Path .\windows-amd64\helm.exe -Destination C:\Windows\System32\helm.exe && \
-    Remove-Item -Path helm-v3.7.0-windows-amd64.zip, windows-amd64 -Recurse
+# Install python3 via chocolatey in powershell
+RUN powershell -Command \
+    choco install -y python3 --version 3.9.7
 
-# RUN powershell -Command Install-WindowsFeature Web-Server
+# Install helm via chocolatey in powershell
+RUN powershell -Command \
+    choco install -y kubernetes-helm 
+
 
 COPY ./main.py ./
 
