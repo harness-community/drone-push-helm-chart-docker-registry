@@ -1,7 +1,9 @@
 #  Use Windows Server Core as base
-FROM --platform=windows/amd64 mcr.microsoft.com/windows/servercore:ltsc2022 as core
+# FROM --platform=windows/amd64 mcr.microsoft.com/windows/servercore:ltsc2022 as core
 
-FROM --platform=windows/amd64 mcr.microsoft.com/windows/nanoserver:ltsc2022
+# FROM --platform=windows/amd64 mcr.microsoft.com/windows/nanoserver:ltsc2022
+FROM --platform=windows/amd64 mcr.microsoft.com/windows/servercore:1809-KB5021237 as download
+
 USER ContainerAdministrator
 
 WORKDIR C:\\app
