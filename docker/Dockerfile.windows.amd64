@@ -1,0 +1,22 @@
+#  Use Windows Server Core as base
+FROM --platform=windows/amd64 mcr.microsoft.com/windows/servercore:ltsc2022 as base
+
+FROM --platform=windows/amd64 mcr.microsoft.com/windows/nanoserver:1809
+USER ContainerAdministrator
+
+WORKDIR C:\app
+
+ENV HELM_EXPERIMENTAL_OCI=1
+
+COPY --from=core /windows/system32/netapi32.dll /windows/system32/netapi32.dll
+
+RUN curl.exe -LO "https://get.helm.sh/helm-v3.7.0-windows-amd64.zip" && \
+    Expand-Archive -Path helm-v3.7.0-windows-amd64.zip -DestinationPath . && \
+    Move-Item -Path .\windows-amd64\helm.exe -Destination C:\Windows\System32\helm.exe && \
+    Remove-Item -Path helm-v3.7.0-windows-amd64.zip, windows-amd64 -Recurse
+
+RUN powershell -Command Install-WindowsFeature Web-Server
+
+COPY ./main.py ./
+
+CMD ["python", "C:\\app\\main.py"]
