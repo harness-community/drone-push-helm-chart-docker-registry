@@ -8,10 +8,12 @@ WORKDIR C:\\app
 
 ENV HELM_EXPERIMENTAL_OCI=1
 
-SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+SHELL ["cmd", "/S", "/C"]
+
 # Install chocolatey
 
-RUN iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+RUN powershell -Command "(New-Object System.Net.WebClient).DownloadFile('https://community.chocolatey.org/install.ps1', 'install.ps1')" && \
+    install.ps1
 
 # Install python3 via chocolatey in powershell
 RUN choco install -y python3
