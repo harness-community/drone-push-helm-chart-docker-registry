@@ -1,19 +1,18 @@
 #  Use Windows Server Core as base
 FROM --platform=windows/amd64 mcr.microsoft.com/windows/servercore:ltsc2022 as core
 
-FROM --platform=windows/amd64 plugins/base:windows-ltsc2022-amd64
+FROM --platform=windows/amd64 mcr.microsoft.com/windows/nanoserver:ltsc2022
 USER ContainerAdministrator
 
 WORKDIR C:\\app
 
 ENV HELM_EXPERIMENTAL_OCI=1
 
-SHELL ["cmd", "/S", "/C"]
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 # Install chocolatey
 
-RUN powershell -Command "(New-Object System.Net.WebClient).DownloadFile('https://community.chocolatey.org/install.ps1', 'install.ps1')" && \
-    install.ps1
+RUN Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
 # Install python3 via chocolatey in powershell
 RUN choco install -y python3
