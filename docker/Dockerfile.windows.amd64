@@ -8,21 +8,21 @@ WORKDIR C:\\app
 
 ENV HELM_EXPERIMENTAL_OCI=1
 
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 # Install chocolatey
-RUN powershell -Command \
-    Set-ExecutionPolicy Bypass -Scope Process -Force; \
+
+RUN Set-ExecutionPolicy Bypass -Scope Process -Force; \
     [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; \
     iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 
+
 # Install python3 via chocolatey in powershell
-RUN powershell -Command \
-    choco install -y python3 --version 3.9.7
+RUN choco install -y python3
 
 # Install helm via chocolatey in powershell
-RUN powershell -Command \
-    choco install -y kubernetes-helm 
-
+RUN choco install -y kubernetes-helm 
 
 COPY ./main.py ./
 
-CMD ["python", "C:\\app\\main.py"]
+# CMD ["python", "C:\\app\\main.py"]
+ENTRYPOINT ["python", "C:\\app\\main.py"]
