@@ -19,4 +19,6 @@ COPY ./main.sh ./
 
 # ENTRYPOINT ["python", "C:\\app\\main.py"]
 # CMD ["C:\\Program Files\\Git\\bin\\bash.exe", "-c", "./main.sh"]
-ENTRYPOINT [ "./main.sh" ]
+
+# Execute main.sh in powershell
+ENTRYPOINT ["powershell", "-Command", "./main.sh"]
