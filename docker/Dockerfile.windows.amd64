@@ -24,4 +24,4 @@ COPY ./main.sh ./
 # CMD ["C:\\Program Files\\Git\\bin\\bash.exe", "-c", "./main.sh"]
 
 # Execute main.sh in powershell
-ENTRYPOINT ["bash", "./main.sh"]
+ENTRYPOINT ["bash", "C:\\app\\main.sh"]
