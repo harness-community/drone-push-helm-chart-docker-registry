@@ -19,4 +19,4 @@ COPY ./main.sh /app/
 
 # ENTRYPOINT ["python", "C:\\app\\main.py"]
 # CMD ["C:\\Program Files\\Git\\bin\\bash.exe", "-c", "./main.sh"]
-CMD ["&", "C:\\Program Files\\Git\\bin\\bash.exe", "-c", "./main.sh"]
+ENTRYPOINT ["C:\\Program Files\\Git\\bin\\bash.exe", "-c", "./main.sh"]
