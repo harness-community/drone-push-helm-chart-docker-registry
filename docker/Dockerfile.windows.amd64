@@ -15,7 +15,7 @@ RUN Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointMa
 RUN choco install -y kubernetes-helm 
 RUN choco install git.install -y 
 
-COPY ./main.sh ./
+COPY ./main.sh /app/
 
 # ENTRYPOINT ["python", "C:\\app\\main.py"]
-CMD ["C:\\Program Files\\Git\\bin\\bash.exe", "-c", "./main.sh"]
+CMD ["C:\\Program Files\\Git\\bin\\bash.exe",  "-c", "C:\\app\\main.sh"]
