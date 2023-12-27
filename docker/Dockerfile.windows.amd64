@@ -10,18 +10,11 @@ ENV chocolateyVersion=1.4.0
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 RUN Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-RUN set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
-RUN choco install -y kubernetes-helm 
+RUN choco install -y kubernetes-helm
 
-RUN choco install -y git.install
+RUN choco install -y python3 
 
-ENV PATH="C:\\Program Files\\Git\\bin;$PATH"
+COPY ./main.py /app/
 
-COPY ./main.sh ./
-
-# ENTRYPOINT ["python", "C:\\app\\main.py"]
-# CMD ["C:\\Program Files\\Git\\bin\\bash.exe", "-c", "./main.sh"]
-
-# Execute main.sh in powershell
-ENTRYPOINT ["bash", "C:\\app\\main.sh"]
+ENTRYPOINT ["python", "C:\\app\\main.py"]
