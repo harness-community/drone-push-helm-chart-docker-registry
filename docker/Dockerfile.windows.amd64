@@ -7,6 +7,7 @@ WORKDIR C:\\app
 ENV HELM_EXPERIMENTAL_OCI=1
 ENV chocolateyVersion=1.4.0
 
+ENV PATH="C:\\Program Files\\Git\\bin;$PATH"
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
@@ -19,6 +20,7 @@ COPY ./main.sh ./
 
 # ENTRYPOINT ["python", "C:\\app\\main.py"]
 # CMD ["C:\\Program Files\\Git\\bin\\bash.exe", "-c", "./main.sh"]
+RUN chmod +x main.sh
 
 # Execute main.sh in powershell
-ENTRYPOINT ["powershell", "-Command", "./main.sh"]
+ENTRYPOINT ["bash", "./main.sh"]
