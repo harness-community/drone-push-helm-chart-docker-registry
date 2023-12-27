@@ -1,17 +1,20 @@
-# Dockerfile for windows/arm64
-FROM --platform=${BUILDPLATFORM:-windows/arm64} mcr.microsoft.com/windows/nanoserver:1809
+FROM --platform=windows/arm64 mcr.microsoft.com/windows/servercore:ltsc2022
 
-WORKDIR C:\app
+USER ContainerAdministrator
+
+WORKDIR C:\\app
 
 ENV HELM_EXPERIMENTAL_OCI=1
+ENV chocolateyVersion=1.4.0
 
-RUN curl.exe -LO "https://get.helm.sh/helm-v3.7.0-windows-arm64.zip" && \
-    Expand-Archive -Path helm-v3.7.0-windows-arm64.zip -DestinationPath . && \
-    Move-Item -Path .\windows-arm64\helm.exe -Destination C:\Windows\System32\helm.exe && \
-    Remove-Item -Path helm-v3.7.0-windows-arm64.zip, windows-arm64 -Recurse
 
-RUN powershell -Command Install-WindowsFeature Web-Server
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-COPY main.py ./
+RUN Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
-CMD ["python", "C:\\app\\main.py"]
+RUN choco install -y kubernetes-helm 
+
+COPY ./main.sh ./
+
+# ENTRYPOINT ["python", "C:\\app\\main.py"]
+CMD ["bash", "C:\\app\\main.sh"]

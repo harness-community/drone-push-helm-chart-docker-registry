@@ -1,8 +1,4 @@
-#  Use Windows Server Core as base
-# FROM --platform=windows/amd64 mcr.microsoft.com/windows/servercore:ltsc2022 as core
-
 FROM --platform=windows/amd64 mcr.microsoft.com/windows/servercore:ltsc2022
-# FROM --platform=windows/amd64 mcr.microsoft.com/windows/servercore:1809-KB5021237 as download
 
 USER ContainerAdministrator
 
@@ -14,17 +10,11 @@ ENV chocolateyVersion=1.4.0
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-# Install chocolatey
-
 RUN Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
-# Install python3 via chocolatey in powershell
-RUN choco install -y python3
-
-# Install helm via chocolatey in powershell
 RUN choco install -y kubernetes-helm 
 
-COPY ./main.py ./
+COPY ./main.sh ./
 
-# CMD ["python", "C:\\app\\main.py"]
-ENTRYPOINT ["python", "C:\\app\\main.py"]
+# ENTRYPOINT ["python", "C:\\app\\main.py"]
+CMD ["bash", "C:\\app\\main.sh"]

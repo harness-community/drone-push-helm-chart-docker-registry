@@ -11,8 +11,6 @@ RUN apk --no-cache add ca-certificates curl && \
     rm -rf linux-amd64 helm-v3.7.0-linux-amd64.tar.gz && \
     chmod +x /usr/local/bin/helm
 
-RUN apk --no-cache add python3
+COPY ./main.sh /app/
 
-COPY ../main.py /app/
-
-CMD ["python3", "/app/main.py"]
+CMD ["sh", "/app/main.sh"]

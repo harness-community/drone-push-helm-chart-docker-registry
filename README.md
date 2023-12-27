@@ -16,7 +16,7 @@ Building and using the plugin is a straightforward process. You can run the scri
     PLUGIN_CHART_PATH=CHART_PATH \
     PLUGIN_DOCKER_USERNAME=DOCKER_USERNAME \
     PLUGIN_DOCKER_PASSWORD=DOCKER_PASSWORD \
-    python3 main.py
+    bash main.sh
 
 Additionally, you can build the Docker image with these commands:
 
