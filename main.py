@@ -32,7 +32,6 @@ if (CHART_PATH is not None):
     os.chdir(CHART_PATH)
 
 try:
-    subprocess.run(["helm", "package", "--dependency-update", "."])
     if (subprocess.run(["helm", "package", "--dependency-update", "."]).returncode != 0):
         raise Exception("Failed to package chart!")
 except:
@@ -44,7 +43,6 @@ chart_filename = f"{CHART_NAME}-{CHART_VERSION}.tgz"
 try:
     login_command = ['helm', 'registry', 'login', DOCKER_REGISTRY,
                      '-u', DOCKER_USERNAME, '-p', DOCKER_PASSWORD]
-    subprocess.run(login_command)
     if (subprocess.run(login_command).returncode != 0):
         raise Exception("Failed to login!")
 except:
@@ -54,7 +52,6 @@ except:
 try:
     docker_push_command = ["helm", "push", chart_filename,
                            f"oci://{DOCKER_REGISTRY}/{DOCKER_USERNAME}"]
-    subprocess.run(docker_push_command)
     if (subprocess.run(docker_push_command).returncode != 0):
         raise Exception("Failed to push chart!")
 except:
