@@ -18,4 +18,4 @@ RUN choco install git.install -y
 COPY ./main.sh ./
 
 # ENTRYPOINT ["python", "C:\\app\\main.py"]
-CMD ["powershell", "C:\\app\\main.sh"]
+CMD ["C:\\Program Files\\Git\\bin\\bash.exe", "-c", "./main.sh"]
