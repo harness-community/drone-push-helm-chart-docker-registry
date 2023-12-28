@@ -24,6 +24,7 @@ class TestPushOCIChartToRegistry(unittest.TestCase):
         os.environ["PLUGIN_DOCKER_PASSWORD"] = test_docker_password
         os.environ["PLUGIN_CHART_VERSION"] = "5.0.0"
         os.environ["PLUGIN_DOCKER_REGISTRY"] = "registry.hub.docker.com"
+        os.environ["PLUGIN_CHART_PATH"] = "."
 
         mock_subprocess_run.return_value.returncode = 0
 
