@@ -22,7 +22,6 @@ class TestPushOCIChartToRegistry(unittest.TestCase):
         test_docker_password = os.environ["TEST_DOCKER_PASSWORD"]
         os.environ["PLUGIN_DOCKER_USERNAME"] = test_docker_username
         os.environ["PLUGIN_DOCKER_PASSWORD"] = test_docker_password
-        os.environ["PLUGIN_CHART_PATH"] = os.getenv("TEST_CHART_PATH")
         os.environ["PLUGIN_CHART_VERSION"] = "5.0.0"
         os.environ["PLUGIN_DOCKER_REGISTRY"] = "registry.hub.docker.com"
 
@@ -44,6 +43,7 @@ class TestPushOCIChartToRegistry(unittest.TestCase):
         test_docker_password = os.environ["TEST_DOCKER_PASSWORD"]
         os.environ["PLUGIN_DOCKER_USERNAME"] = test_docker_username
         os.environ["PLUGIN_DOCKER_PASSWORD"] = test_docker_password
+        os.environ["PLUGIN_CHART_PATH"] = "chart"
 
         mock_subprocess_run.return_value.returncode = 1
 
