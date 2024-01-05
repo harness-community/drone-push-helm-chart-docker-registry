@@ -22,12 +22,18 @@ def main_function():
 
     CHART_PATH = os.getenv("PLUGIN_CHART_PATH")
 
+    DOCKER_NAMESPACE = os.getenv("PLUGIN_DOCKER_NAMESPACE")
+
     if (CHART_NAME is None or CHART_NAME == ""):
         print("Please provide a chart name")
         exit(1)
 
     if (DOCKER_USERNAME is None or DOCKER_PASSWORD is None or DOCKER_USERNAME == "" or DOCKER_PASSWORD == ""):
         print("Please provide a username and a password")
+        exit(1)
+
+    if (DOCKER_NAMESPACE is None or DOCKER_NAMESPACE == ""):
+        print("Please provide a namespace")
         exit(1)
 
     if (CHART_PATH is not None):
@@ -53,7 +59,7 @@ def main_function():
 
     try:
         docker_push_command = ["helm", "push", chart_filename,
-                               f"oci://{DOCKER_REGISTRY}/{DOCKER_USERNAME}"]
+                               f"oci://{DOCKER_REGISTRY}/{DOCKER_NAMESPACE}"]
         if (subprocess.run(docker_push_command).returncode != 0):
             raise Exception("Failed to push chart!")
         else:
