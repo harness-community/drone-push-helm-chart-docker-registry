@@ -21,7 +21,7 @@ To learn how to utilize Drone plugins in Harness CI, please consult the provided
 | chart_path <span style="font-size: 10px"><br/>`string`</span>                                                                  | Defaults: <span style="color:blue;">`./`</span>                    | Directory containing the helm chart                        |
 | docker_username <span style="font-size: 10px"><br/>`string`</span> <span style="color:red; font-size: 10px">`required`</span>  |                                                                    | Docker username to login to the above registry.            |
 | docker_password <span style="font-size: 10px"><br/>`string`</span> <span style="color:red; font-size: 10px">`required`</span>  |                                                                    | Docker PAT to authenticate                                 |
-| docker_namespace <span style="font-size: 10px"><br/>`string`</span> <span style="color:red; font-size: 10px">`required`</span> |                                                                    | Namespace under which the chart will be published          |
+| docker_namespace <span style="font-size: 10px"><br/>`string`</span> <span style="color:red; font-size: 10px">`required`</span> |                                                                    | Namespace under which the chart will be published          | 
 
 ## Plugin Image
 
