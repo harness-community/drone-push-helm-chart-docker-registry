@@ -16,7 +16,8 @@ Building and using the plugin is a straightforward process. You can run the scri
     PLUGIN_CHART_PATH=CHART_PATH \
     PLUGIN_DOCKER_USERNAME=DOCKER_USERNAME \
     PLUGIN_DOCKER_PASSWORD=DOCKER_PASSWORD \
-    bash main.sh
+    PLUGIN_DOCKER_NAMESPACE=DOCKER_NAMESPACE
+    python main.py
 
 Additionally, you can build the Docker image with these commands:
 
@@ -35,6 +36,7 @@ Integrating the drone-push-helm-chart-docker-registry plugin into your Harness C
     -e PLUGIN_CHART_PATH=${CHART_PATH} \
     -e PLUGIN_DOCKER_USERNAME=${DOCKER_USERNAME} \
     -e PLUGIN_DOCKER_PASSWORD=${DOCKER_PASSWORD} \
+    -e PLUGIN_DOCKER_NAMESPACE=${DOCKER_NAMESPACE} \
     -v $(pwd):$(pwd) \
     -w $(pwd) \
     harnesscommunity/drone-helm-chart-docker-registry
@@ -55,6 +57,7 @@ In your Harness CI pipeline, you can define the plugin as a step, like this:
     chart_path:  path-to-helm-chart
     chart_version:  1.0.0
     docker_registry:  registry.hub.docker.com
+    docker_namespace: docker-namespace
 
 #### Plugin Options
 
@@ -71,6 +74,8 @@ The plugin offers several options for customization:
 - **_-\-docker_username_**: Here, you provide your Docker login username. Replace ${DOCKER_USERNAME} with your Docker username.
 
 - **_-\-docker_password_**: This variable requires your Docker login password. Replace ${DOCKER_PASSWORD} with your Docker password.
+
+- **_-\-docker_namespace_**: This allows you to push the packaged chart to a specific namespace.
 
 These environment variables are essential for configuring and customizing the behavior of the drone-push-helm-chart-docker-registry plugin when it's executed as a Docker container. They allow you to provide specific values and credentials required for the plugin to package and push your Helm chart to the Docker registry of your choice. Make sure to set these variables according to your project's needs.
 
