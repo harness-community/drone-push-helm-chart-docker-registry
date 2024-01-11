@@ -25,7 +25,7 @@ To learn how to utilize Drone plugins in Harness CI, please consult the provided
 
 ## Plugin Image
 
-The plugin `harnesscommunity/drone-push-helm-chart-docker-registry` is available for the following architectures:
+The plugin `harnesscommunity/drone-helm-chart-docker-registry` is available for the following architectures:
 
 | OS            | Tag             |
 | ------------- | --------------- |
@@ -43,7 +43,7 @@ The plugin `harnesscommunity/drone-push-helm-chart-docker-registry` is available
     identifier: Push_Helm_to_Docker
     spec:
         connectorRef: harness-docker-connector
-        image: harnesscommunity/drone-helm-chart-docker-registry:linux-amd64
+        image: harnesscommunity/drone-helm-chart-docker-registry
         settings:
             chart_name: mywebapp
             docker_username: <+variable.docker_username>
