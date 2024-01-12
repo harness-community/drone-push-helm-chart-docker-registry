@@ -2,6 +2,7 @@
 
 - [Synopsis](#Synopsis)
 - [Parameters](#Paramaters)
+- [Notes](#Notes)
 - [Plugin Image](#Plugin-Image)
 - [Examples](#Examples)
 
@@ -21,9 +22,10 @@ To learn how to utilize Drone plugins in Harness CI, please consult the provided
 | token <span style="font-size: 10px"><br/>`string`</span> <span style="color:red; font-size: 10px">`required`</span>           |                                                   | PAT / access token to authenticate                         |
 | namespace <span style="font-size: 10px"><br/>`string`</span> <span style="color:red; font-size: 10px">`required`</span>       |                                                   | Namespace under which the chart will be published          |
 
-## Note
+## Notes
 
 If you're using GAR, use `oauth2accesstoken` as username and `access-token` as token.
+
 
 ## Plugin Image
 
