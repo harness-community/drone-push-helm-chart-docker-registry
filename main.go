@@ -88,8 +88,19 @@ func getChartName(chartPath string) (string, error) {
 
 	// if os is windows
 	if runtime.GOOS == "windows" {
-		cmd1 = exec.Command("helm", "show", "chart", chartPath)
-		cmd2 = exec.Command("powershell", "-Command", "Select-String 'name:' | ForEach-Object { $_.Matches.Groups[1].Value }")
+		// cmd = helm show chart ./ | Select-String 'name: (.*)' | ForEach-Object { $_.Matches.Groups[1].Value }
+		cmd := exec.Command("powershell", "-Command", "helm show chart ", chartPath, "| Select-String 'name: (.*)' | ForEach-Object { $_.Matches.Groups[1].Value }")
+
+		var out bytes.Buffer
+
+		cmd.Stdout = &out
+
+		if err := cmd.Run(); err != nil {
+			fmt.Println("Chart does not exist in the specified path")
+			return "", err
+		}
+
+		return out.String(), nil
 	}
 
 	var out1 bytes.Buffer
@@ -117,8 +128,18 @@ func getChartVersion(chartPath string) (string, error) {
 
 	// if os is windows
 	if runtime.GOOS == "windows" {
-		cmd1 = exec.Command("helm", "show", "chart", chartPath)
-		cmd2 = exec.Command("powershell", "-Command", "Select-String 'version:' | ForEach-Object { $_.Matches.Groups[1].Value }")
+		cmd := exec.Command("powershell", "-Command", "helm show chart ", chartPath, "| Select-String '^version: (.*)' | ForEach-Object { $_.Matches.Groups[1].Value }")
+
+		var out bytes.Buffer
+
+		cmd.Stdout = &out
+
+		if err := cmd.Run(); err != nil {
+			fmt.Println("Chart does not exist in the specified path")
+			return "", err
+		}
+
+		return out.String(), nil
 	}
 
 	var out1 bytes.Buffer
