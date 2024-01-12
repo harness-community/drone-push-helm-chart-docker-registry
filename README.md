@@ -33,6 +33,8 @@ If you aim to push Helm Charts to Google Artifact Registry (GAR):
 In case of Docker Hub:
 - Set the registry URL to `registry.hub.docker.com`
 
+Review the "[plugin image](#plugin-image)" section to identify the available tags for supported architectures, and then use these tags in the Docker Image during the plugin step.
+
 For more details check the [examples](#Examples) section.
 
 ## Plugin Image
@@ -56,13 +58,13 @@ The plugin `harnesscommunity/drone-helm-chart-container-registry` is available f
     identifier: helm_chart_docker
     spec:
         connectorRef: harness-docker-connector
-        image: harnesscommunity/drone-helm-chart-container-registry
+        image: harnesscommunity/drone-helm-chart-container-registry:linux-amd64
         settings:
             registry_url: registry.hub.docker.com
             registry_username: <+variable.docker_username>
             registry_password: <+secrets.getValue("docker_pat")>
             chart_path: chart
-            docker_namespace: <+variable.namespace>
+            registry_namespace: <+variable.namespace>
 ```
 ```
 # Plugin YAML
@@ -73,13 +75,13 @@ The plugin `harnesscommunity/drone-helm-chart-container-registry` is available f
     identifier: helm_chart_gar
     spec:
         connectorRef: harness-docker-connector
-        image: harnesscommunity/drone-helm-chart-container-registry
+        image: harnesscommunity/drone-helm-chart-container-registry:linux-amd64
         settings:
             registry_url: LOCATION-docker.pkg.dev
             registry_username: oauth2accesstoken
             registry_password: <+secrets.getValue("access_token")>
             chart_path: chart
-            docker_namespace: <+variable.namespace>
+            registry_namespace: <+variable.namespace>
 ```
 
 > <span style="font-size: 14px; margin-left:5px; background-color: #d3d3d3; padding: 4px; border-radius: 4px;">ℹ️ If you notice any issues in this documentation, you can [edit this document](https://github.com/harness-community/drone-push-helm-chart-docker-registry/blob/main/README.md) to improve it.</span>
