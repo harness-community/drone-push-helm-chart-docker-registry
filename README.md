@@ -37,7 +37,7 @@ For more details check the [examples](#Examples) section.
 
 ## Plugin Image
 
-The plugin `harnesscommunity/drone-helm-chart-docker-registry` is available for the following architectures:
+The plugin `harnesscommunity/drone-helm-chart-container-registry` is available for the following architectures:
 
 | OS            | Tag             |
 | ------------- | --------------- |
@@ -56,7 +56,7 @@ The plugin `harnesscommunity/drone-helm-chart-docker-registry` is available for 
     identifier: helm_chart_docker
     spec:
         connectorRef: harness-docker-connector
-        image: harnesscommunity/drone-helm-chart-docker-registry
+        image: harnesscommunity/drone-helm-chart-container-registry
         settings:
             registry_url: registry.hub.docker.com
             registry_username: <+variable.docker_username>
@@ -73,7 +73,7 @@ The plugin `harnesscommunity/drone-helm-chart-docker-registry` is available for 
     identifier: helm_chart_gar
     spec:
         connectorRef: harness-docker-connector
-        image: harnesscommunity/drone-helm-chart-docker-registry
+        image: harnesscommunity/drone-helm-chart-container-registry
         settings:
             registry_url: LOCATION-docker.pkg.dev
             registry_username: oauth2accesstoken
