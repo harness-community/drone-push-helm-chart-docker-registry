@@ -8,7 +8,9 @@
 
 ## Synopsis
 
-This plugin is designed to streamline the packaging and distribution of Helm charts to a Docker registry.
+This plugin is designed to streamline the packaging and distribution of Helm charts to a Container registry.
+
+Currently, supports pushing Helm charts to Docker Hub and Google Artifact Registry.
 
 To learn how to utilize Drone plugins in Harness CI, please consult the provided [documentation](https://developer.harness.io/docs/continuous-integration/use-ci/use-drone-plugins/run-a-drone-plugin-in-ci).
 
@@ -40,10 +42,12 @@ The plugin `harnesscommunity/drone-helm-chart-docker-registry` is available for 
 
 ```
 # Plugin YAML
+
+# DockerHub
 - step:
     type: Plugin
-    name: Push Helm to Docker
-    identifier: Push_Helm_to_Docker
+    name: Push Helm Chart to DockerHub
+    identifier: helm_chart_docker
     spec:
         connectorRef: harness-docker-connector
         image: harnesscommunity/drone-helm-chart-docker-registry
@@ -54,11 +58,11 @@ The plugin `harnesscommunity/drone-helm-chart-docker-registry` is available for 
             chart_path: chart
             docker_namespace: <+variable.namespace>
 
-# Using GAR
+# GoogleArtifactRegistry
 - step:
     type: Plugin
-    name: Push Helm to GAR
-    identifier: Push_Helm_to_GAR
+    name: Push Helm Chart to GAR
+    identifier: helm_chart_gar
     spec:
         connectorRef: harness-docker-connector
         image: harnesscommunity/drone-helm-chart-docker-registry
