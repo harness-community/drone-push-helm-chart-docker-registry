@@ -48,8 +48,7 @@ The plugin `harnesscommunity/drone-helm-chart-docker-registry` is available for 
 
 ```
 # Plugin YAML
-
-# DockerHub
+# DockerHub Example
 - step:
     type: Plugin
     name: Push Helm Chart to DockerHub
@@ -63,8 +62,10 @@ The plugin `harnesscommunity/drone-helm-chart-docker-registry` is available for 
             registry_password: <+secrets.getValue("docker_pat")>
             chart_path: chart
             docker_namespace: <+variable.namespace>
-
-# GoogleArtifactRegistry
+```
+```
+# Plugin YAML
+# GAR Example
 - step:
     type: Plugin
     name: Push Helm Chart to GAR
