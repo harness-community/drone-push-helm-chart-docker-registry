@@ -75,7 +75,7 @@ The plugin `harnesscommunity/drone-helm-chart-docker-registry` is available for 
         connectorRef: harness-docker-connector
         image: harnesscommunity/drone-helm-chart-docker-registry
         settings:
-            registry_url: https://LOCATION-docker.pkg.dev
+            registry_url: LOCATION-docker.pkg.dev
             registry_username: oauth2accesstoken
             registry_password: <+secrets.getValue("access_token")>
             chart_path: chart
