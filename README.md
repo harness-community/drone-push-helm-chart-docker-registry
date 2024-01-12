@@ -27,7 +27,7 @@ To learn how to utilize Drone plugins in Harness CI, please consult the provided
 ## Notes
 
 If you aim to push Helm Charts to Google Artifact Registry (GAR):
-  - Set the registry URL to `https://LOCATION-docker.pkg.dev`
+  - Set the registry URL to `LOCATION-docker.pkg.dev`
   - use `oauth2accesstoken` as username and `access-token` as token. Refer to this [documentation](https://cloud.google.com/artifact-registry/docs/helm/authentication#token) for generating an access token.
 
 In case of Docker Hub:
