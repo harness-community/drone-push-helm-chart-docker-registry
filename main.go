@@ -13,7 +13,7 @@ func main() {
 	//  get environment variables
 	registry := os.Getenv("PLUGIN_REGISTRY_URL")
 	username := os.Getenv("PLUGIN_REGISTRY_USERNAME")
-	token := os.Getenv("PLUGIN_REGISTRY_TOKEN")
+	token := os.Getenv("PLUGIN_REGISTRY_PASSWORD")
 	chartPath := os.Getenv("PLUGIN_CHART_PATH")
 	namespace := os.Getenv("PLUGIN_REGISTRY_NAMESPACE")
 
