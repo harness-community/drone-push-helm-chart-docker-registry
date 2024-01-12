@@ -11,11 +11,11 @@ import (
 
 func main() {
 	//  get environment variables
-	registry := os.Getenv("PLUGIN_REGISTRY")
-	username := os.Getenv("PLUGIN_USERNAME")
-	token := os.Getenv("PLUGIN_TOKEN")
+	registry := os.Getenv("PLUGIN_REGISTRY_URL")
+	username := os.Getenv("PLUGIN_REGISTRY_USERNAME")
+	token := os.Getenv("PLUGIN_REGISTRY_TOKEN")
 	chartPath := os.Getenv("PLUGIN_CHART_PATH")
-	namespace := os.Getenv("PLUGIN_NAMESPACE")
+	namespace := os.Getenv("PLUGIN_REGISTRY_NAMESPACE")
 
 	if (registry == "") || (username == "") || (token == "") || (namespace == "") {
 		fmt.Println("Missing required environment variables")
