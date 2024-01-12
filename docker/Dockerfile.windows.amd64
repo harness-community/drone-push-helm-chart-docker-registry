@@ -13,8 +13,6 @@ RUN Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointMa
 
 RUN choco install -y kubernetes-helm
 
-RUN choco install -y python3 
+COPY ./drone-helm.exe /app/
 
-COPY ./main.py /app/
-
-ENTRYPOINT ["python", "C:\\app\\main.py"]
+CMD ["C:\\app\\drone-helm.exe"]
