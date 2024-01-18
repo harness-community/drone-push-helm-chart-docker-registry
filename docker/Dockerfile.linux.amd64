@@ -6,4 +6,4 @@ RUN apk --no-cache add ca-certificates
 
 COPY ./drone-helm /app/
 
-ENTRYPOINT ["./app/drone-helm"]
+ENTRYPOINT ["/app/drone-helm"]
