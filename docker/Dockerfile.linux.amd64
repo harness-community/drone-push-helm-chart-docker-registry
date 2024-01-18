@@ -2,6 +2,8 @@ FROM --platform=linux/amd64 alpine:latest as base
 
 WORKDIR /app
 
+RUN apk --no-cache add ca-certificates
+
 COPY ./drone-helm /app/
 
-CMD ["/app/drone-helm"]
+CMD ["/bin/sh"]
