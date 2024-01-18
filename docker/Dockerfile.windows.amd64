@@ -1,17 +1,8 @@
-FROM --platform=windows/amd64 mcr.microsoft.com/windows/servercore:ltsc2022
+FROM --platform=windows/amd64 plugins/base:windows-ltsc2022-amd64
 
 USER ContainerAdministrator
 
 WORKDIR C:\\app
-
-ENV HELM_EXPERIMENTAL_OCI=1
-ENV chocolateyVersion=1.4.0
-
-SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
-
-RUN Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-
-RUN choco install -y kubernetes-helm
 
 COPY ./drone-helm.exe /app/
 
