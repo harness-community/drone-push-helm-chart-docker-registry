@@ -1,8 +1,9 @@
 FROM --platform=linux/amd64 alpine:latest as base
 
+WORKDIR /app
 
 RUN apk --no-cache add ca-certificates
 
-ADD ./drone-helm /bin/
+COPY ./drone-helm /app/
 
-ENTRYPOINT ["/bin/drone-helm"]
+ENTRYPOINT ["./app/drone-helm"]
