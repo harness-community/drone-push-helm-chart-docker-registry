@@ -1,9 +1,7 @@
-FROM alpine:latest as base
+FROM --platform=arm64 alpine:latest
 
 WORKDIR /app
 
-ADD ./drone-helm /bin/
+ADD ./drone-helm /app/
 
-RUN chmod +x /bin/drone-helm
-
-ENTRYPOINT ["/bin/drone-helm"]
+ENTRYPOINT ["/app/drone-helm"]
