@@ -24,7 +24,19 @@ To learn how to utilize Drone plugins in Harness CI, please consult the provided
 
 ## Notes
 
-If you're using GAR, use `oauth2accesstoken` as username and `access-token` as token. Refer to this [documentation](https://cloud.google.com/artifact-registry/docs/helm/authentication#token) for generating an access token.
+If you aim to push Helm Charts to Google Artifact Registry (GAR):
+
+- Set the registry URL to `LOCATION-docker.pkg.dev`
+- use `oauth2accesstoken` as username and `access-token` as token. Refer to this documentation for generating an access token.
+- use `REPO_ID` as `registry_namespace` and `PROJECT_ID` as `gcloud_project_id`
+
+In case of Docker Hub:
+
+- Set the registry URL to registry.hub.docker.com
+
+Review the "[plugin image](https://github.com/harness-community/drone-helm-chart-container-registry/blob/main/README.md#plugin-image)" section to identify the available tags for supported architectures, and then use these tags in the Docker Image during the plugin step.
+
+For more details check the [examples](https://github.com/harness-community/drone-helm-chart-container-registry/blob/main/README.md#Examples) section.
 
 ## Plugin Image
 
@@ -67,6 +79,7 @@ The plugin `harnesscommunity/drone-helm-chart-docker-registry` is available for 
             registry_username: oauth2accesstoken
             registry_password: <+secrets.getValue("access_token")>
             chart_path: chart
+            gcloud_project_id: PROJECT_ID
             registry_namespace: REPO_ID
 ```
 
