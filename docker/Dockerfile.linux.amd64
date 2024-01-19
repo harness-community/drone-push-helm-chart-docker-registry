@@ -1,6 +1,4 @@
-FROM alpine:latest
-
-RUN apk add --no-cache libc6-compat 
+FROM alpine:3.18
 
 WORKDIR /app
 
