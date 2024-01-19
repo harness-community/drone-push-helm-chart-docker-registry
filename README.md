@@ -52,7 +52,7 @@ The plugin `harnesscommunity/drone-helm-chart-docker-registry` is available for 
             registry_username: <+variable.docker_username>
             registry_password: <+secrets.getValue("docker_pat")>
             chart_path: chart
-            docker_namespace: <+variable.namespace>
+            registry_namespace: <+variable.namespace>
 
 # Using GAR
 - step:
@@ -67,7 +67,7 @@ The plugin `harnesscommunity/drone-helm-chart-docker-registry` is available for 
             registry_username: oauth2accesstoken
             registry_password: <+secrets.getValue("access_token")>
             chart_path: chart
-            docker_namespace: <+variable.namespace>
+            registry_namespace: REPO_ID
 ```
 
 > <span style="font-size: 14px; margin-left:5px; background-color: #d3d3d3; padding: 4px; border-radius: 4px;">ℹ️ If you notice any issues in this documentation, you can [edit this document](https://github.com/harness-community/drone-push-helm-chart-docker-registry/blob/main/README.md) to improve it.</span>

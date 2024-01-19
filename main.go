@@ -17,6 +17,7 @@ func main() {
 	token := os.Getenv("PLUGIN_REGISTRY_PASSWORD")
 	chartPath := os.Getenv("PLUGIN_CHART_PATH")
 	namespace := os.Getenv("PLUGIN_REGISTRY_NAMESPACE")
+	projectId := os.Getenv("PLUGIN_GCLOUD_PROJECT_ID")
 
 	err := env.VerifyEnvVars()
 	if err != nil {
@@ -75,6 +76,10 @@ func main() {
 	client.Settings = settings
 
 	ociURL := "oci://" + registryUrl + "/" + namespace
+
+	if projectId != "" {
+		ociURL = "oci://" + registryUrl + "/" + projectId + "/" + namespace
+	}
 
 	_, err = client.Run(packageRun, ociURL)
 	if err != nil {
