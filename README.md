@@ -40,7 +40,6 @@ Review the "[plugin image](#plugin-image)" section to identify the available tag
 
 For more details check the [examples](#Examples) section.
 
-
 ## Plugin Image
 
 The plugin `harnesscommunity/drone-helm-chart-container-registry` is available for the following architectures:
@@ -70,9 +69,6 @@ The plugin `harnesscommunity/drone-helm-chart-container-registry` is available f
             chart_path: chart
             registry_namespace: <+variable.namespace>
 
-```
-# Plugin YAML
-# GAR Example
 - step:
     type: Plugin
     name: Push Helm Chart to GAR
