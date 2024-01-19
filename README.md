@@ -1,4 +1,4 @@
-# drone-helm-chart-docker-registry
+# drone-helm-chart-container-registry
 
 - [Synopsis](#Synopsis)
 - [Parameters](#Paramaters)
@@ -8,7 +8,9 @@
 
 ## Synopsis
 
-This plugin is designed to streamline the packaging and distribution of Helm charts to a Docker registry.
+This plugin is designed to streamline the packaging and distribution of Helm charts to a Container registry.
+
+Currently, supports pushing Helm charts to Docker Hub and Google Artifact Registry.
 
 To learn how to utilize Drone plugins in Harness CI, please consult the provided [documentation](https://developer.harness.io/docs/continuous-integration/use-ci/use-drone-plugins/run-a-drone-plugin-in-ci).
 
@@ -34,13 +36,14 @@ In case of Docker Hub:
 
 - Set the registry URL to registry.hub.docker.com
 
-Review the "[plugin image](https://github.com/harness-community/drone-helm-chart-container-registry/blob/main/README.md#plugin-image)" section to identify the available tags for supported architectures, and then use these tags in the Docker Image during the plugin step.
+Review the "[plugin image](#plugin-image)" section to identify the available tags for supported architectures, and then use these tags in the Docker Image during the plugin step.
 
-For more details check the [examples](https://github.com/harness-community/drone-helm-chart-container-registry/blob/main/README.md#Examples) section.
+For more details check the [examples](#Examples) section.
+
 
 ## Plugin Image
 
-The plugin `harnesscommunity/drone-helm-chart-docker-registry` is available for the following architectures:
+The plugin `harnesscommunity/drone-helm-chart-container-registry` is available for the following architectures:
 
 | OS            | Tag             |
 | ------------- | --------------- |
@@ -52,13 +55,14 @@ The plugin `harnesscommunity/drone-helm-chart-docker-registry` is available for 
 
 ```
 # Plugin YAML
+# DockerHub Example
 - step:
     type: Plugin
-    name: Push Helm to Docker
-    identifier: Push_Helm_to_Docker
+    name: Push Helm Chart to DockerHub
+    identifier: helm_chart_docker
     spec:
         connectorRef: harness-docker-connector
-        image: harnesscommunity/drone-helm-chart-docker-registry
+        image: harnesscommunity/drone-helm-chart-container-registry:linux-amd64
         settings:
             registry_url: registry.hub.docker.com
             registry_username: <+variable.docker_username>
@@ -66,21 +70,24 @@ The plugin `harnesscommunity/drone-helm-chart-docker-registry` is available for 
             chart_path: chart
             registry_namespace: <+variable.namespace>
 
-# Using GAR
+```
+# Plugin YAML
+# GAR Example
 - step:
     type: Plugin
-    name: Push Helm to GAR
-    identifier: Push_Helm_to_GAR
+    name: Push Helm Chart to GAR
+    identifier: helm_chart_gar
     spec:
         connectorRef: harness-docker-connector
-        image: harnesscommunity/drone-helm-chart-docker-registry
+        image: harnesscommunity/drone-helm-chart-container-registry:linux-amd64
         settings:
-            registry_url: https://LOCATION-docker.pkg.dev
+            registry_url: LOCATION-docker.pkg.dev
             registry_username: oauth2accesstoken
             registry_password: <+secrets.getValue("access_token")>
             chart_path: chart
             gcloud_project_id: PROJECT_ID
             registry_namespace: REPO_ID
+
 ```
 
 > <span style="font-size: 14px; margin-left:5px; background-color: #d3d3d3; padding: 4px; border-radius: 4px;">ℹ️ If you notice any issues in this documentation, you can [edit this document](https://github.com/harness-community/drone-push-helm-chart-docker-registry/blob/main/README.md) to improve it.</span>
