@@ -17,8 +17,9 @@ func main() {
 	chartPath := os.Getenv("PLUGIN_CHART_PATH")
 	namespace := os.Getenv("PLUGIN_REGISTRY_NAMESPACE")
 
-	if (registryUrl == "") || (username == "") || (token == "") || (namespace == "") || (chartPath == "") {
-		fmt.Println("Missing required environment variables")
+	err := verifyEnvVars()
+	if err != nil {
+		fmt.Println(err.Error())
 		os.Exit(1)
 	}
 
@@ -81,4 +82,18 @@ func main() {
 	}
 
 	fmt.Printf("Successfully pushed chart to %s", ociURL)
+}
+
+func verifyEnvVars() error {
+	registryUrl := os.Getenv("PLUGIN_REGISTRY_URL")
+	username := os.Getenv("PLUGIN_REGISTRY_USERNAME")
+	token := os.Getenv("PLUGIN_REGISTRY_PASSWORD")
+	chartPath := os.Getenv("PLUGIN_CHART_PATH")
+	namespace := os.Getenv("PLUGIN_REGISTRY_NAMESPACE")
+
+	if (registryUrl == "") || (username == "") || (token == "") || (namespace == "") || (chartPath == "") {
+		return fmt.Errorf("required environment variables not set")
+	}
+
+	return nil
 }
