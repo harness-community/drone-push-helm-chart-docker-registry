@@ -75,10 +75,12 @@ func main() {
 	settings := new(cli.EnvSettings)
 	client.Settings = settings
 
-	ociURL := "oci://" + registryUrl + "/" + namespace
+	var ociURL string
 
 	if projectId != "" {
 		ociURL = "oci://" + registryUrl + "/" + projectId + "/" + namespace
+	} else {
+		ociURL = "oci://" + registryUrl + "/" + namespace
 	}
 
 	_, err = client.Run(packageRun, ociURL)
