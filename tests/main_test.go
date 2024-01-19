@@ -1,6 +1,7 @@
 package main
 
 import (
+	"drone/plugin/helm-chart-docker-registry/env"
 	"os"
 	"testing"
 )
@@ -29,9 +30,14 @@ func TestMain_EnvVarsNotSet(t *testing.T) {
 		os.Setenv("PLUGIN_REGISTRY_NAMESPACE", originalNamespace)
 	}()
 
-	err := verifyEnvVars()
+	err := env.VerifyEnvVars()
 	if err == nil {
 		t.Error("Expected error, but got nil")
+	}
+
+	expectedErrorMessage := "required environment variables not set"
+	if got := err.Error(); got != expectedErrorMessage {
+		t.Errorf("Expected error message %q, but got %q", expectedErrorMessage, got)
 	}
 
 }
@@ -60,7 +66,7 @@ func TestMain_EnvVarsSet(t *testing.T) {
 		os.Setenv("PLUGIN_REGISTRY_NAMESPACE", originalNamespace)
 	}()
 
-	err := verifyEnvVars()
+	err := env.VerifyEnvVars()
 	if err != nil {
 		t.Errorf("Expected nil, but got %v", err)
 	}
