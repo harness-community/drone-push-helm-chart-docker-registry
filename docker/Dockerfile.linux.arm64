@@ -1,4 +1,4 @@
-FROM --platform=linux/arm64 alpine:latest as base
+FROM alpine:latest as base
 
 WORKDIR /app
 

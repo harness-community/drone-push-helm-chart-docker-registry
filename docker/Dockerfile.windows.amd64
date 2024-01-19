@@ -1,4 +1,4 @@
-FROM --platform=windows/amd64 plugins/base:windows-ltsc2022-amd64
+FROM plugins/base:windows-ltsc2022-amd64
 
 USER ContainerAdministrator
 
