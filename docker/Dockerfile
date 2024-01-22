@@ -1,7 +1,4 @@
-FROM alpine:3.6 as alpine
-
-RUN apk add -U --no-cache ca-certificates && \
-    apk add gcompat
+FROM debian:11-slim
 
 ENV GODEBUG netdns=go
 
