@@ -4,6 +4,6 @@ USER ContainerAdministrator
 
 ENV GODEBUG=netdns=go
 
-ADD release/linux/arm64/plugin C:/drone-helm.exe
+ADD release/linux/arm64/drone-helm C:/drone-helm.exe
 
 CMD ["C:\\drone-helm.exe"]
