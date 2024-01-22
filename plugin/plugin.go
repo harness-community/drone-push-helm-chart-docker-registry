@@ -28,7 +28,7 @@ type Args struct {
 	Password    string `envconfig:"PLUGIN_REGISTRY_PASSWORD"`
 	ChartPath   string `envconfig:"PLUGIN_CHART_PATH"`
 	Namespace   string `envconfig:"PLUGIN_REGISTRY_NAMESPACE"`
-	ProjectId   string `envconfig:"PLUGIN_PROJECT_ID"`
+	ProjectId   string `envconfig:"PLUGIN_GCLOUD_PROJECT_ID"`
 }
 
 // Exec executes the plugin.
