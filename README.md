@@ -1,29 +1,62 @@
-# drone-helm-chart-container-registry
+A plugin to drone plugin to package and publish helm charts.
 
-- [Synopsis](#Synopsis)
-- [Parameters](#Paramaters)
-- [Notes](#Notes)
-- [Plugin Image](#Plugin-Image)
-- [Examples](#Examples)
+# Usage
 
-## Synopsis
+The following settings changes this plugin's behavior.
 
-This plugin is designed to streamline the packaging and distribution of Helm charts to a Container registry.
+- param1 (optional) does something.
+- param2 (optional) does something different.
 
-Currently, supports pushing Helm charts to Docker Hub and Google Artifact Registry.
+Below is an example `.drone.yml` that uses this plugin.
 
-To learn how to utilize Drone plugins in Harness CI, please consult the provided [documentation](https://developer.harness.io/docs/continuous-integration/use-ci/use-drone-plugins/run-a-drone-plugin-in-ci).
+```yaml
+kind: pipeline
+name: default
 
-## Parameters
+steps:
+  - name: run harnesscommunity/drone-helm-chart-container-registry plugin
+    image: harnesscommunity/drone-helm-chart-container-registry
+    pull: if-not-exists
+    settings:
+      param1: foo
+      param2: bar
+```
 
-| Parameter                                                                                                                        | Choices/<span style="color:blue;">Defaults</span> | Comments                                                   |
-| :------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------ | :--------------------------------------------------------- |
-| registry_url <span style="font-size: 10px"><br/>`string`</span> <span style="color:red; font-size: 10px">`required`</span>       |                                                   | Docker registry where the packaged chart will be published |
-| chart_path <span style="font-size: 10px"><br/>`string`</span> <span style="color:red; font-size: 10px">`required`</span>         |                                                   | Directory containing the helm chart                        |
-| registry_username <span style="font-size: 10px"><br/>`string`</span> <span style="color:red; font-size: 10px">`required`</span>  |                                                   | Username to login to the above registry.                   |
-| registry_password <span style="font-size: 10px"><br/>`string`</span> <span style="color:red; font-size: 10px">`required`</span>  |                                                   | PAT / access token to authenticate                         |
-| registry_namespace <span style="font-size: 10px"><br/>`string`</span> <span style="color:red; font-size: 10px">`required`</span> |                                                   | Namespace under which the chart will be published          |
-| gcloud_project_id <span style="font-size: 10px"><br/>`string`</span>                                                             |                                                   | Google Artifact Repository project ID                      |
+# Building
+
+Build the plugin binary:
+
+```text
+scripts/build.sh
+```
+
+Build the plugin image:
+
+```text
+docker build -t harnesscommunity/drone-helm-chart-container-registry -f docker/Dockerfile .
+```
+
+# Testing
+
+Execute the plugin from your current working directory:
+
+```text
+docker run --rm -e PLUGIN_PARAM1=foo -e PLUGIN_PARAM2=bar \
+  -e DRONE_COMMIT_SHA=8f51ad7884c5eb69c11d260a31da7a745e6b78e2 \
+  -e DRONE_COMMIT_BRANCH=master \
+  -e DRONE_BUILD_NUMBER=43 \
+  -e DRONE_BUILD_STATUS=success \
+  -w /drone/src \
+  -v $(pwd):/drone/src \
+  harnesscommunity/drone-helm-chart-container-registry
+```
+
+"font-size: 10px"><br/>`string`</span> <span style="color:red; font-size: 10px">`required`</span> | | Docker registry where the packaged chart will be published |
+| chart_path <span style="font-size: 10px"><br/>`string`</span> <span style="color:red; font-size: 10px">`required`</span> | | Directory containing the helm chart |
+| registry_username <span style="font-size: 10px"><br/>`string`</span> <span style="color:red; font-size: 10px">`required`</span> | | Username to login to the above registry. |
+| registry_password <span style="font-size: 10px"><br/>`string`</span> <span style="color:red; font-size: 10px">`required`</span> | | PAT / access token to authenticate |
+| registry_namespace <span style="font-size: 10px"><br/>`string`</span> <span style="color:red; font-size: 10px">`required`</span> | | Namespace under which the chart will be published |
+| gcloud_project_id <span style="font-size: 10px"><br/>`string`</span> | | Google Artifact Repository project ID |
 
 ## Notes
 

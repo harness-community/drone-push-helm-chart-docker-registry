@@ -1,5 +1,0 @@
-apiVersion: v2
-name: mywebapp
-description: a simple web app
-version: 5.0.0
-appVersion: 5.0.0

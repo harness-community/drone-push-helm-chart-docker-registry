@@ -1,9 +1,0 @@
-FROM plugins/base:windows-ltsc2022-amd64
-
-USER ContainerAdministrator
-
-WORKDIR C:\\app
-
-COPY ./drone-helm.exe /app/
-
-CMD ["C:\\app\\drone-helm.exe"]

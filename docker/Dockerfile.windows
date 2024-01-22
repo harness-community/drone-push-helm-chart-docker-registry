@@ -1,0 +1,9 @@
+FROM plugins/base:windows-ltsc2022-amd64
+
+USER ContainerAdministrator
+
+ENV GODEBUG=netdns=go
+
+ADD release/linux/arm64/plugin C:/drone-helm.exe
+
+CMD ["C:\\drone-helm.exe"]

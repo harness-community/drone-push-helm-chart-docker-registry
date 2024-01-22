@@ -6,5 +6,5 @@ ENV GODEBUG netdns=go
 
 COPY --from=alpine /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
-ADD release/linux/arm64/drone-helm /bin/
+ADD release/linux/amd64/drone-helm /bin/
 ENTRYPOINT ["/bin/drone-helm"]
