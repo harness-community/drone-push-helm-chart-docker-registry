@@ -6,6 +6,8 @@ ENV GODEBUG netdns=go
 
 COPY --from=alpine /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
+RUN apk update
+
 RUN apk add gcompat
 
 ADD release/linux/amd64/drone-helm /bin/
