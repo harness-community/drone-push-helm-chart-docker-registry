@@ -18,7 +18,7 @@ manifests:
       architecture: arm64
       os: linux
   -
-    image: harnesscommunity/drone-helm-chart-container-registry:{{#if build.tag}}{{trimPrefix "v" build.tag}}-{{/if}}linux-arm
+    image: harnesscommunity/drone-helm-chart-container-registry:{{#if build.tag}}{{trimPrefix "v" build.tag}}-{{/if}}windows-amd64
     platform:
       architecture: amd64
       os: windows
