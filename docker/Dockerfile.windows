@@ -4,6 +4,6 @@ USER ContainerAdministrator
 
 ENV GODEBUG=netdns=go
 
-ADD release/linux/arm64/drone-helm C:/drone-helm.exe
+ADD release/windows/amd64/drone-helm.exe C:/
 
-CMD ["C:\\drone-helm.exe"]
+ENTRYPOINT ["C:\\drone-helm.exe"]
