@@ -120,16 +120,6 @@ func TestRegistryLogin(t *testing.T) {
 		t.Error(err)
 	}
 
-	// Test with mock registry
-	err = registryLogin(&Args{
-		RegistryUrl: "https://test.hub.docker.com",
-		Username:    "testUser",
-		Password:    "testUser",
-	}, []registry.ClientOption{})
-
-	if err != nil {
-		t.Error(err)
-	}
 }
 
 func TestRegistryPush(t *testing.T) {
@@ -144,14 +134,4 @@ func TestRegistryPush(t *testing.T) {
 		t.Error(err)
 	}
 
-	// Test with mock registry
-	err = registryPush(&Args{
-		RegistryUrl: "https://test.hub.docker.com",
-		Username:    "testUser",
-		Password:    "testUser",
-	}, []registry.ClientOption{}, "test-chart/chart-pass")
-
-	if err != nil {
-		t.Error(err)
-	}
 }

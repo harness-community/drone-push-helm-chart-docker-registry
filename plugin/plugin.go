@@ -123,11 +123,6 @@ func registryLogin(args *Args, opts []registry.ClientOption) error {
 		return fmt.Errorf("failed to create registry client")
 	}
 
-	// mock registry
-	if args.Username == "testUser" && args.Password == "testUser" && args.RegistryUrl == "https://test.hub.docker.com" {
-		return nil
-	}
-
 	cfg := new(action.Configuration)
 	cfg.RegistryClient = registryClient
 
@@ -165,11 +160,6 @@ func registryPush(args *Args, opts []registry.ClientOption, packageRun string) e
 		remoteURL = fmt.Sprintf("oci://%s/%s/%s", args.RegistryUrl, args.ProjectId, args.Namespace)
 	} else {
 		remoteURL = fmt.Sprintf("oci://%s/%s", args.RegistryUrl, args.Namespace)
-	}
-
-	// mock registry
-	if args.Username == "testUser" && args.Password == "testUser" && args.RegistryUrl == "https://test.hub.docker.com" {
-		return nil
 	}
 
 	_, err = client.Run(packageRun, remoteURL)
