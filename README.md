@@ -45,11 +45,12 @@ For more details check the [examples](#Examples) section.
 
 The plugin `harnesscommunity/drone-helm-chart-container-registry` is available for the following architectures:
 
-| OS            | Tag             |
-| ------------- | --------------- |
-| linux/amd64   | `linux-amd64`   |
-| linux/arm64   | `linux-arm64`   |
-| windows/amd64 | `windows-amd64` |
+| OS            | Tag                          |
+| ------------- | ---------------------------- |
+| latest        | `linux arm64/amd64, windows` |
+| linux/amd64   | `linux-amd64`                |
+| linux/arm64   | `linux-arm64`                |
+| windows/amd64 | `windows-amd64`              |
 
 ## Examples
 
