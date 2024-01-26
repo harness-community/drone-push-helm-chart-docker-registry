@@ -1,4 +1,4 @@
-FROM scratch:latest
+FROM scratch
 
 ENV GODEBUG netdns=go
 
