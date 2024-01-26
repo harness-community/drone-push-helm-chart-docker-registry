@@ -34,7 +34,7 @@ type Args struct {
 
 // Exec executes the plugin.
 func Exec(ctx context.Context, args Args) error {
-	if err := VerifyArgs(&args); err != nil {
+	if err := verifyArgs(&args); err != nil {
 		return err
 	}
 
@@ -60,7 +60,7 @@ func Exec(ctx context.Context, args Args) error {
 	return nil
 }
 
-func VerifyArgs(args *Args) error {
+func verifyArgs(args *Args) error {
 	if args.RegistryUrl == "" {
 		return fmt.Errorf("registry url is required")
 	}

@@ -14,7 +14,7 @@ import (
 func TestVerifyArgs(t *testing.T) {
 	var err error
 
-	err = VerifyArgs(&Args{
+	err = verifyArgs(&Args{
 		RegistryUrl: "https://registry.hub.docker.com",
 	})
 
@@ -22,7 +22,7 @@ func TestVerifyArgs(t *testing.T) {
 		t.Error(err)
 	}
 
-	err = VerifyArgs(&Args{
+	err = verifyArgs(&Args{
 		Username: "octocat",
 		Password: "pass",
 	})
@@ -31,7 +31,7 @@ func TestVerifyArgs(t *testing.T) {
 		t.Error(err)
 	}
 
-	err = VerifyArgs(&Args{
+	err = verifyArgs(&Args{
 		RegistryUrl: "https://registry.hub.docker.com",
 		Username:    "octocat",
 		Password:    "pass",
@@ -41,7 +41,7 @@ func TestVerifyArgs(t *testing.T) {
 		t.Error(err)
 	}
 
-	err = VerifyArgs(&Args{
+	err = verifyArgs(&Args{
 		RegistryUrl: "https://registry.hub.docker.com",
 		Username:    "octocat",
 		Password:    "pass",
