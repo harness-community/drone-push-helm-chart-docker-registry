@@ -1,10 +1,7 @@
-FROM alpine:3.6 as alpine
-RUN apk add -U --no-cache ca-certificates
+FROM scratch:latest
 
-FROM alpine:3.6
 ENV GODEBUG netdns=go
 
-COPY --from=alpine /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
-
 ADD release/linux/arm64/drone-helm /bin/
+
 ENTRYPOINT ["/bin/drone-helm"]

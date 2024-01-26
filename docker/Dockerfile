@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM scratch:latest
 
 ENV GODEBUG netdns=go
 
