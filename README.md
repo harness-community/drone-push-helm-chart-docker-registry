@@ -1,4 +1,4 @@
-# drone-helm-chart-container-registry
+# drone-helm-push
 
 - [Synopsis](#Synopsis)
 - [Parameters](#Paramaters)
@@ -43,7 +43,7 @@ For more details check the [examples](#Examples) section.
 
 ## Plugin Image
 
-The plugin `harnesscommunity/drone-helm-chart-container-registry` is available for the following architectures:
+The plugin `plugins/helm-push` is available for the following architectures:
 
 | OS            | Tag                          |
 | ------------- | ---------------------------- |
@@ -63,7 +63,7 @@ The plugin `harnesscommunity/drone-helm-chart-container-registry` is available f
     identifier: helm_chart_docker
     spec:
         connectorRef: harness-docker-connector
-        image: harnesscommunity/drone-helm-chart-container-registry:linux-amd64
+        image: plugins/helm-push
         settings:
             registry_url: registry.hub.docker.com
             registry_username: <+variable.docker_username>
@@ -77,7 +77,7 @@ The plugin `harnesscommunity/drone-helm-chart-container-registry` is available f
     identifier: helm_chart_gar
     spec:
         connectorRef: harness-docker-connector
-        image: harnesscommunity/drone-helm-chart-container-registry:linux-amd64
+        image: plugins/helm-push
         settings:
             registry_url: LOCATION-docker.pkg.dev
             registry_username: oauth2accesstoken
